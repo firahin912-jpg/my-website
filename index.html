@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="am" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MY Agency - Employment Website</title>
+    <style>
+        /* --- የዌብሳይቱ ሙሉ ዲዛይን (CSS) --- */
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #0d1117;
+            color: #fff;
+        }
+
+        /* የላይኛው ባር (Navbar) */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #161b22;
+            padding: 15px 30px;
+            border-bottom: 2px solid #ff007f;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-circle {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff007f, #00bfff);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            box-shadow: 0 0 10px rgba(0, 191, 255, 0.5);
+        }
+
+        .logo-text {
+            font-family: 'Georgia', serif;
+            font-size: 20px;
+            color: #fff;
+            font-style: italic;
+        }
+
+        .agency-name {
+            font-size: 22px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .language-switcher {
+            display: flex;
+            gap: 10px;
+        }
+
+        .lang-btn {
+            background-color: #21262d;
+            color: #c9d1d9;
+            border: 1px solid #30363d;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .lang-btn.active, .lang-btn:hover {
+            background: linear-gradient(to right, #ff007f, #00bfff);
+            color: #fff;
+            border-color: transparent;
+        }
+
+        /* ዋናው ማሳያ ገጽ */
+        .hero-section {
+            position: relative;
+            background: url('background.jpg') no-repeat center center/cover;
+            background-color: #0d1117;
+            min-height: calc(100vh - 80px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+            box-sizing: border-box;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.75);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            max-width: 1100px;
+            width: 100%;
+        }
+
+        .info-box {
+            flex: 1;
+            min-width: 300px;
+            background-color: rgba(22, 27, 34, 0.9);
+            padding: 30px;
+            border-radius: 12px;
+            border-left: 5px solid #00bfff;
+            align-self: center;
+            box-sizing: border-box;
+        }
+
+        .info-box p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin: 0 0 15px 0;
+        }
+
+        .margin-top-20 { margin-top: 20px !important; }
+
+        .learn-more-btn {
+            display: inline-block;
+            background: linear-gradient(to right, #ff007f, #00bfff);
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 22px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 14px;
+            transition: transform 0.2s;
+            margin-bottom: 10px;
+        }
+
+        .learn-more-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* የቀኝኛው የፎርም ሳጥን */
+        .form-container {
+            flex: 1;
+            min-width: 320px;
+            max-width: 480px;
+            background-color: #ffffff;
+            color: #24292f;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            box-sizing: border-box;
+        }
+
+        .form-container h2 {
+            margin: 0 0 5px 0;
+            text-align: center;
+            color: #161b22;
+            font-size: 24px;
+        }
+
+        .subtitle {
+            text-align: center;
+            margin: 0 0 15px 0;
+            color: #57606a;
+            font-size: 14px;
+        }
+
+        hr { border: 0; height: 1px; background: #e1e4e8; margin-bottom: 20px; }
+
+        .form-group { margin-bottom: 18px; }
+
+        label { display: block; margin-bottom: 6px; font-weight: 600; font-size: 14px; color: #444; }
+
+        input[type="text"], input[type="tel"], select {
+            width: 100%; padding: 12px; border: 1px solid #d1d5da;
+            border-radius: 6px; box-sizing: border-box; font-size: 14px;
+            background-color: #f6f8fa;
+        }
+
+        .passport-duration { display: flex; gap: 12px; }
+        .duration-field { flex: 1; }
+
+        .radio-group { display: flex; gap: 20px; padding: 5px 0; }
+        .radio-group label { font-weight: normal; display: flex; align-items: center; gap: 6px; cursor: pointer; color: #444; }
+
+        /* ልምድ ሲመረጥ የሚከፈተው ቦክስ (Design) */
+        .experience-box {
+            background-color: #f1f8ff;
+            border-left: 4px solid #0366d6;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 18px;
+        }
+
+        .submit-btn {
+            width: 100%; background: linear-gradient(to right, #2ecc71, #27ae60);
+            color: white; padding: 14px; border: none; border-radius: 6px;
+            font-size: 16px; cursor: pointer; font-weight: bold; margin-top: 10px;
+        }
+
+        .success-box {
+            text-align: center; padding: 25px; background-color: #dcffe4;
+            border: 1px solid #bef5cb; border-radius: 8px; color: #22863a;
+        }
+        .success-box h3 { margin-top: 0; color: #22863a; font-size: 22px; }
+        .success-box p { color: #24292f; font-size: 15px; }
+        
+        .agency-phone-title { font-weight: bold; margin-top: 15px; margin-bottom: 5px; color: #161b22; text-align: left; }
+        .phone-list { list-style: none; padding: 0; margin: 0; text-align: left; }
+        .phone-list li { font-size: 18px; font-weight: bold; color: #0366d6; margin-top: 5px; }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo-area">
+            <div class="logo-circle">
+                <span class="logo-text">MY</span>
+            </div>
+            <span class="agency-name">MY Agency</span>
+        </div>
+        
+        <div class="language-switcher">
+            <button class="lang-btn active" onclick="switchLanguage('am')">አማርኛ</button>
+            <button class="lang-btn" onclick="switchLanguage('om')">Oromoo</button>
+            <button class="lang-btn" onclick="switchLanguage('ti')">ትግርኛ</button>
+        </div>
+    </header>
+
+    <section class="hero-section">
+        <div class="overlay"></div>
+        <div class="hero-content">
+            
+            <div class="info-box">
+                <p id="infoText1">ከባህረ ሰላጤው ሀገራት ታዋቂ አሰሪዎች ጋር በቅንጅት በመስራት ፈጣን እና አስተማማኝ የቅጥር ሂደት እናከናውናለን።</p>
+                <a href="#form-section" class="learn-more-btn">LEARN MORE</a>
+                <p id="infoText2" class="margin-top-20">አነስተኛ ወጪ እና ጥራት ባለው መልኩ ሂደቶችን በማጠናቀቅ ለውድ እህቶቻችን የተሻለ አማራጭ እናቀርባለን።</p>
+                <p id="infoText3" class="margin-top-20">የስራ አይነቶቹ፡ <strong>የቤት ሰራተኛነት</strong></p>
+                <a href="#form-section" class="learn-more-btn">LEARN MORE</a>
+            </div>
+
+            <div class="form-container" id="form-section">
+                <h2 id="formTitle">MY Agency</h2>
+                <p class="subtitle" id="formSubtitle">የአረብ ሀገር ወይም የውጭ ሀገር ስራና ሰራተኛ አገናኝ</p>
+                <hr>
+
+                <form id="registrationForm" onsubmit="submitForm(event)">
+                    
+                    <div class="form-group">
+                        <label id="lblFullName" for="fullName">ሙሉ ስም (ከነአባት):</label>
+                        <input type="text" id="fullName" placeholder="እባክዎ ሙሉ ስምዎን ያስገቡ" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label id="lblPassport">የፓስፖርት ኤክስፓየሪዴት (ለመጨረስ የቀረው ጊዜ):</label>
+                        <div class="passport-duration">
+                            <div class="duration-field">
+                                <select id="passportYears" required>
+                                    <option value="" disabled selected id="optYears">አመት</option>
+                                    <!-- Options will be dynamic -->
+                                </select>
+                            </div>
+                            <div class="duration-field">
+                                <select id="passportMonths" required>
+                                    <option value="" disabled selected id="optMonths">ወራት</option>
+                                    <!-- Options will be dynamic -->
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label id="lblLanguage" for="language">የሚያውቁት ቋንቋ (እንግሊዘኛ ወይም አረብኛ):</label>
+                        <select id="language" required>
+                            <option value="" disabled selected id="optLangSelect">ቋንቋ ይምረጡ</option>
+                            <option value="English" id="optLangEng">እንግሊዘኛ (English)</option>
+                            <option value="Arabic" id="optLangAra">አረብኛ (Arabic)</option>
+                            <option value="Both" id="optLangBoth">ሁለቱንም ያውቃሉ (English & Arabic)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label id="lblCity" for="city">ኢትዮጵያ ውስጥ የሚኖሩበት ከተማ/አካባቢ:</label>
+                        <input type="text" id="city" placeholder="ለምሳሌ፡ አዲስ አበባ፣ ቃሊቲ" required>
+                    </div>
+
+                    <!-- የልምድ ጥያቄ -->
+                    <div class="form-group">
+                        <label id="lblExp">የአረብ ሀገር የስራ ልምድ አለሽ?</label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="experience" value="yes" onclick="toggleExperience(true)" required> <span id="lblYes">አዎ</span></label>
+                            <label><input type="radio" name="experience" value="no" onclick="toggleExperience(false)"> <span id="lblNo">አይ</span></label>
+                        </div>
+                    </div>
+
+                    <!-- ልምድ ካለ የሚከፈተው አዲሱ ክፍል -->
+                    <div class="experience-box" id="experienceSection" style="display: none;">
+                        
+                        <div class="form-group">
+                            <label id="lblExpCountry" for="expCountry">የት ሀገር ሰርተዋል?</label>
+                            <select id="expCountry">
+                                <option value="" disabled selected id="optExpCountry">ሀገር ይምረጡ</option>
+                                <!-- Dynamic Countries -->
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label id="lblExpDuration">የስንት ጊዜ ልምድ አለዎት?</label>
+                            <div class="passport-duration">
+                                <div class="duration-field">
+                                    <select id="expYears">
+                                        <option value="" disabled selected id="optExpYears">ስንት አመት</option>
+                                        <!-- Dynamic Years -->
+                                    </select>
+                                </div>
+                                <div class="duration-field">
+                                    <select id="expMonths">
+                                        <option value="" disabled selected id="optExpMonths">የስንት ወር</option>
+                                        <!-- Dynamic Months -->
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 0;">
+                            <label id="lblDays" for="arrivalDay">መቼ ትመጫለሽ? (ቀን ይምረጡ):</label>
+                            <select id="arrivalDay">
+                                <option value="" disabled selected id="optDay">ቀን ይምረጡ</option>
+                                <option value="Monday" id="dayMon">ሰኞ</option>
+                                <option value="Tuesday" id="dayTue">ማክሰኞ</option>
+                                <option value="Wednesday" id="dayWed">ረቡዕ</option>
+                                <option value="Thursday" id="dayThu">ሐሙስ</option>
+                                <option value="Friday" id="dayFri">አርብ</option>
+                                <option value="Saturday" id="daySat">ቅዳሜ</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label id="lblPhone" for="userPhone">የእርስዎ ስልክ ቁጥር:</label>
+                        <input type="tel" id="userPhone" placeholder="09..." required>
+                    </div>
+
+                    <button type="submit" class="submit-btn" id="btnSubmit">ሰሚት (Submit)</button>
+                </form>
+
+                <div id="successMessage" class="success-box" style="display: none;">
+                    <h3 id="successTitle">ስለተመዘገቡ እናመሰግናለን!</h3>
+                    <p id="successDesc">ምዝገባዎ በተሳካ ሁኔታ ተጠናቋል። በቅርቡ እናገኝዎታለን።</p>
+                    <hr>
+                    <p class="agency-phone-title" id="lblOurPhones">የእኛ ስልክ ቁጥሮች፦</p>
+                    <ul class="phone-list">
+                        <li>📞 0974250576</li>
+                        <li>📞 0974259776</li>
+                        <li>📞 0939262728</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <script>
+        const TELEGRAM_BOT_TOKEN = '8806342459:AAF_qCM64SqhxGTfUVQOxMG8Pe3c8caj0hM';
+        const TELEGRAM_CHAT_ID = '-1004469587304'; 
+
+        let currentLang = 'am';
+
+        const countriesList = {
+            am: ["ሳዑዲ አረቢያ", "ዱባይ", "ኳታር", "ኩዌት", "ባህሬን", "ኦማን", "የመን", "ኢራቅ", "ዮርዳኖስ", "ሊባኖስ", "ሶሪያ", "ፍልስጤም", "ግብፅ", "ሱዳን", "ሊቢያ", "ቱኒዚያ"],
+            om: ["Sa'udii Arabiyaa", "Dubayi", "Qataar", "Kuweet", "Bahreyn", "Omaan", "Yaman", "Iraaq", "Yordanos", "Libanos", "Sooriyaa", "Palestaayin", "Gibxii", "Sudaan", "Libiyaa", "Tunisiyaa"],
+            ti: ["ሳዑዲ ዓረቢያ", "ዱባይ", "ኳታር", "ኩዌት", "ባህሬን", "ኦማን", "የመን", "ኢራቅ", "ዮርዳኖስ", "ሊባኖስ", "ሶሪያ", "ፍልስጤም", "ግብፅ", "ሱዳን", "ሊቢያ", "ቱኒዚያ"]
+        };
+
+        const translations = {
+            am: {
+                text1: "ከባህረ ሰላጤው ሀገራት ታዋቂ አሰሪዎች ጋር በቅንጅት በመስራት ፈጣን እና አስተማማኝ የቅጥር ሂደት እናከናውናለን።",
+                text2: "አነስተኛ ወጪ እና ጥራት ባለው መልኩ ሂደቶችን በማጠናቀቅ ለውድ እህቶቻችን የተሻለ አማራጭ እናቀርባለን።",
+                text3: "የስራ አይነቶቹ፡ <strong>የቤት ሰራተኛነት</strong>",
+                formSubtitle: "የአረብ ሀገር ወይም የውጭ ሀገር ስራና ሰራተኛ አገናኝ",
+                fullName: "ሙሉ ስም (ከነአባት):", passport: "የፓስፖርት ኤክስፓየሪዴት (ለመጨረስ የቀረው ጊዜ):",
+                optYears: "አመት", optMonths: "ወራት", langLabel: "የሚያውቁት ቋንቋ (እንግሊዘኛ ወይም አረብኛ):",
+                optLangSelect: "ቋንቋ ይምረጡ", langEng: "እንግሊዘኛ (English)", langAra: "አረብኛ (Arabic)", langBoth: "ሁለቱንም ያውቃሉ (English & Arabic)",
+                city: "ኢትዮጵያ ውስጥ የሚኖሩበት ከተማ/አካባቢ:",
+                exp: "የአረብ ሀገር የስራ ልምድ አለሽ?", yes: "አዎ", no: "አይ",
+                lblExpCountry: "የት ሀገር ሰርተዋል?", optExpCountry: "ሀገር ይምረጡ",
+                lblExpDuration: "የስንት ጊዜ ልምድ አለዎት?", optExpYears: "ስንት አመት", optExpMonths: "የስንት ወር",
+                days: "መቼ ትመጫለሽ? (ቀን ይምረጡ):", optDay: "ቀን ይምረጡ",
+                mon: "ሰኞ", tue: "ማክሰኞ", wed: "ረቡዕ", thu: "ሐሙስ", fri: "አርብ", sat: "ቅዳሜ",
+                phone: "የእርስዎ ስልክ ቁጥር:", submit: "ሰሚት (Submit)",
+                sTitle: "ስለተመዘገቡ እናመሰግናለን!", sDesc: "ምዝገባዎ በተሳካ ሁኔታ ተጠናቋል። በቅርቡ እናገኝዎታለን።",
+                ourPhones: "የእኛ ስልክ ቁጥሮች፦", fullNamePlaceholder: "እባክዎ ሙሉ ስምዎን ያስገቡ", cityPlaceholder: "ለምሳሌ፡ አዲስ አበባ፣ ቃሊቲ",
+                yearSuffix: "አመት", monthSuffix: "ወር"
+            },
+            om: {
+                text1: "Eejensilee beekamoo biyyoota Galaana Baali (Gulf) waliin qindoominaan hojjechuun adeemsa qacarrii saffisaa fi amansiisaa ta'e ni raawwanna.",
+                text2: "Baasii xiqqaa fi qulqullina olaanaan adeemsa xumuruun obboleettota keenya qaqqaaliif filannoo gaarii dhiyeessina.",
+                text3: "Itti gaafatamummaa hojii: <strong>Hojjetaa Manaa</strong>",
+                formSubtitle: "Walitti hidhamiinsa Hojii fi Hojjetaa Biyya Arabaa fi Alaa",
+                fullName: "Maqaa Guutuu (Abbaa dabalatee):", passport: "Yeroo Paaspoortiin itti dhumu (Yeroo hafe):",
+                optYears: "Waggaa", optMonths: "Ji'oota", langLabel: "Afaan beektan (Ingiliffa ykn Arabiffa):",
+                optLangSelect: "Afaan filadhu", langEng: "Ingiliffa (English)", langAra: "Arabiffa (Arabic)", langBoth: "Lachuu ni beeku (English & Arabic)",
+                city: "Naannoo/Magaalaa Itoophiyaa keessa jiraattan:",
+                exp: "Muuxannoo hojii biyya Arabaa qabduu?", yes: "Eeyyee", no: "Lakkii",
+                lblExpCountry: "Biyya kam hojjettan?", optExpCountry: "Biyya filadhu",
+                lblExpDuration: "Muuxannoo yeroo hagami qabdu?", optExpYears: "Waggaa meeqa", optExpMonths: "Ji'a meeqa",
+                days: "Yoom dhuftu? (Guyyaa filadhu):", optDay: "Guyyaa filadhu",
+                mon: "Wiixata", tue: "Kamisa", wed: "Roobii", thu: "Kamisa", fri: "Jimata", sat: "Sanbata",
+                phone: "Lakkofsa Bilbila Keessan:", submit: "Ergi (Submit)",
+                sTitle: "Galatoomaa Galmeeffamuu Keessaniif!", sDesc: "Galmeen keessan milkiidhaan xumurameera. Dhiyeenyatti isiniin qunamna.",
+                ourPhones: "Lakkofsa Bilbila Keenya:", fullNamePlaceholder: "Maqaa keessan guutuu galchaa", cityPlaceholder: "Fkn. Finfinnee, Qaallittii",
+                yearSuffix: "Waggaa", monthSuffix: "Ji'a"
+            },
+            ti: {
+                text1: "ምስ ፍሉጣት መላመድቲ ሃገራት ወሽመጥ ብምትሕብባር ብምስራሕ ቅልጡፍን እሙንን መስርሕ ቆጸራ ነካይድ።",
+                text2: "ብሕሱር ዋጋን ብሉጽ ፅሬትን መስርሕ ብምዝዛም ንክቡራት ኣሓትና ዝበለጸ ኣማራፂ ነቕርብ።",
+                text3: "ዓይነት ስራሕ: <strong>ሰራሕተኛ ገዛ</strong>",
+                formSubtitle: "መራኸቢ ስራሕን ሰራሕተኛን ሃገራት ዓረብን ወጻእን",
+                fullName: "ሙሉእ ስም (ምስ ኣቦ):", passport: "እዋን መሕለፊ ፓስፖርት (ዝተረፈ ግዜ):",
+                optYears: "ዓመት", optMonths: "ኣዋርሕ", langLabel: "እትፈልጥዎ ቋንቋ (እንግሊዘኛ ዶ ዓረብኛ):",
+                optLangSelect: "ቋንቋ ምረፁ", langEng: "እንግሊዘኛ (English)", langAra: "ዓረብኛ (Arabic)", langBoth: "ክልቲኡ ይፈልጣ (English & Arabic)",
+                city: "ኣብ ኢትዮጵያ እትነብሩሉ ከተማ/ከባቢ:",
+                exp: "ኣብ ሃገራት ዓረብ ናይ ስራሕ ልምዲ ኣለክዶ?", yes: "እወ", no: "ኣይፋልን",
+                lblExpCountry: "ኣብ ኣየናይ ሃገር ሰሪሕክን?", optExpCountry: "ሃገር ምረፁ",
+                lblExpDuration: "ናይ ክንደይ ግዜ ልምዲ ኣለክን?", optExpYears: "ክንደይ ዓመት", optExpMonths: "ክንደይ ወርሒ",
+                days: "መዓስ ክትመጺ? (መዓልቲ ምረፂ):", optDay: "መዓልቲ ምረፂ",
+                mon: "ሰኑይ", tue: "ሰሉስ", wed: "ረቡዕ", thu: "ሓሙስ", fri: "ዓርቢ", sat: "ቀዳም",
+                phone: "ቁፅሪ ስልኪኹም:", submit: "ስለኽ (Submit)",
+                sTitle: "ብምምዝጋብኩም ነመስግን!", sDesc: "ምዝገባኹም ብዓወት ተዛዚሙ ኣሎ። ብቕልጡፍ ክንረኽበኩም ኢና።",
+                ourPhones: "ቁፅሪ ስልኪታትና:", fullNamePlaceholder: "በጃኹም ምሉእ ስምኩም የእትዉ", cityPlaceholder: "ንኣብነት፡ ኣዲስ ኣበባ፣ ቃሊቲ",
+                yearSuffix: "ዓመት", monthSuffix: "ወርሒ"
+            }
+        };
+
+        function populateDropdowns(lang) {
+            const t = translations[lang];
+            
+            // 1. Passport and Experience Years (1 to 10)
+            const pYears = document.getElementById('passportYears');
+            const eYears = document.getElementById('expYears');
+            const savedPYears = pYears.value;
+            const savedEYears = eYears.value;
+
+            pYears.innerHTML = `<option value="" disabled id="optYears">${t.optYears}</option>`;
+            eYears.innerHTML = `<option value="" disabled id="optExpYears">${t.optExpYears}</option>`;
+            
+            for(let i=1; i<=10; i++) {
+                pYears.innerHTML += `<option value="${i}">${i} ${t.yearSuffix}</option>`;
+                eYears.innerHTML += `<option value="${i}">${i} ${t.yearSuffix}</option>`;
+            }
+            pYears.value = savedPYears || "";
+            eYears.value = savedEYears || "";
+
+            // 2. Passport and Experience Months (0 to 12)
+            const pMonths = document.getElementById('passportMonths');
+            const eMonths = document.getElementById('expMonths');
+            const savedPMonths = pMonths.value;
+            const savedEMonths = eMonths.value;
+
+            pMonths.innerHTML = `<option value="" disabled id="optMonths">${t.optMonths}</option>`;
+            eMonths.innerHTML = `<option value="" disabled id="optExpMonths">${t.optExpMonths}</option>`;
+            
+            for(let i=0; i<=12; i++) {
+                if (i <= 11) {
+                    pMonths.innerHTML += `<option value="${i}">${i} ${t.monthSuffix}</option>`;
+                }
+                eMonths.innerHTML += `<option value="${i}">${i} ${t.monthSuffix}</option>`;
+            }
+            pMonths.value = savedPMonths || "";
+            eMonths.value = savedEMonths || "";
+
+            // 3. Arab Countries List (1 to 16)
+            const expCountry = document.getElementById('expCountry');
+            const savedCountry = expCountry.value;
+            expCountry.innerHTML = `<option value="" disabled id="optExpCountry">${t.optExpCountry}</option>`;
+            
+            countriesList[lang].forEach((country, index) => {
+                expCountry.innerHTML += `<option value="${countriesList['am'][index]}">${index + 1}. ${country}</option>`;
+            });
+            expCountry.value = savedCountry || "";
+        }
+
+        function switchLanguage(lang) {
+            currentLang = lang;
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            const t = translations[lang];
+            document.getElementById('infoText1').innerText = t.text1;
+            document.getElementById('infoText2').innerText = t.text2;
+            document.getElementById('infoText3').innerHTML = t.text3;
+            document.getElementById('formSubtitle').innerText = t.formSubtitle;
+            document.getElementById('lblFullName').innerText = t.fullName;
+            document.getElementById('lblPassport').innerText = t.passport;
+            
+            document.getElementById('lblLanguage').innerText = t.langLabel;
+            document.getElementById('optLangSelect').innerText = t.optLangSelect;
+            document.getElementById('optLangEng').innerText = t.langEng;
+            document.getElementById('optLangAra').innerText = t.langAra;
+            document.getElementById('optLangBoth').innerText = t.langBoth;
+
+            document.getElementById('lblCity').innerText = t.city;
+            document.getElementById('lblExp').innerText = t.exp;
+            document.getElementById('lblYes').innerText = t.yes;
+            document.getElementById('lblNo').innerText = t.no;
+            
+            document.getElementById('lblExpCountry').innerText = t.lblExpCountry;
+            document.getElementById('lblExpDuration').innerText = t.lblExpDuration;
+
+            document.getElementById('lblDays').innerText = t.days;
+            document.getElementById('optDay').innerText = t.optDay;
+            document.getElementById('dayMon').innerText = t.mon;
+            document.getElementById('dayTue').innerText = t.tue;
+            document.getElementById('dayWed').innerText = t.wed;
+            document.getElementById('dayThu').innerText = t.thu;
+            document.getElementById('dayFri').innerText = t.fri;
+            document.getElementById('daySat').innerText = t.sat;
+            
+            document.getElementById('lblPhone').innerText = t.phone;
+            document.getElementById('btnSubmit').innerText = t.submit;
+            document.getElementById('successTitle').innerText = t.sTitle;
+            document.getElementById('successDesc').innerText = t.sDesc;
+            document.getElementById('lblOurPhones').innerText = t.ourPhones;
+            
+            document.getElementById('fullName').placeholder = t.fullNamePlaceholder;
+            document.getElementById('city').placeholder = t.cityPlaceholder;
+
+            // ፎርሙን በቋንቋው መሰረት እንደገና መሙላት
+            populateDropdowns(lang);
+        }
+
+        function toggleExperience(hasExperience) {
+            const expSection = document.getElementById('experienceSection');
+            const expCountry = document.getElementById('expCountry');
+            const expYears = document.getElementById('expYears');
+            const expMonths = document.getElementById('expMonths');
+            const arrivalDay = document.getElementById('arrivalDay');
+
+            if (hasExperience) {
+                expSection.style.display = 'block';
+                expCountry.setAttribute('required', 'required');
+                expYears.setAttribute('required', 'required');
+                expMonths.setAttribute('required', 'required');
+                arrivalDay.setAttribute('required', 'required');
+            } else {
+                expSection.style.display = 'none';
+                expCountry.removeAttribute('required');
+                expYears.removeAttribute('required');
+                expMonths.removeAttribute('required');
+                arrivalDay.removeAttribute('required');
+                
+                expCountry.value = '';
+                expYears.value = '';
+                expMonths.value = '';
+                arrivalDay.value = '';
+            }
+        }
+
+        function submitForm(event) {
+            event.preventDefault();
+
+            const fullName = document.getElementById('fullName').value;
+            const passportYears = document.getElementById('passportYears').value;
+            const passportMonths = document.getElementById('passportMonths').value;
+            const language = document.getElementById('language').value;
+            const city = document.getElementById('city').value;
+            const experienceRadio = document.querySelector('input[name="experience"]:checked');
+            const experience = experienceRadio ? (experienceRadio.value === 'yes' ? 'አዎ' : 'አይ') : '-';
+            const userPhone = document.getElementById('userPhone').value;
+
+            let message = `📝 *አዲስ ተመዝጋቢ በ MY Agency*\n\n`;
+            message += `👤 *ሙሉ ስም:* ${fullName}\n`;
+            message += `⏳ *የፓስፖርት ጊዜ:* ${passportYears} አመት ከ ${passportMonths} ወር\n`;
+            message += `🌐 *የሚያውቁት ቋንቋ:* ${language}\n`;
+            message += `📍 *የሚኖሩበት ከተማ:* ${city}\n`;
+            message += `💼 *የስራ ልምድ:* ${experience}\n`;
+            
+            if (experience === 'አዎ') {
+                const expCountryAm = document.getElementById('expCountry').value; // Telegram ላይ ሁሌም በአማርኛ እንዲልክ
+                const expYears = document.getElementById('expYears').value;
+                const expMonths = document.getElementById('expMonths').value;
+                
+                const arrivalDaySelect = document.getElementById('arrivalDay');
+                const arrivalDayAm = translations['am'][arrivalDaySelect.value.toLowerCase().substring(0,3)];
+
+                message += `🌍 *የሰራችበት ሀገር:* ${expCountryAm}\n`;
+                message += `⏱ *የልምድ ጊዜ:* ${expYears} አመት ከ ${expMonths} ወር\n`;
+                message += `📅 *የመምጫ ቀን:* ${arrivalDayAm || arrivalDaySelect.options[arrivalDaySelect.selectedIndex].text}\n`;
+            }
+
+            message += `📞 *የስልክ ቁጥር:* \`${userPhone}\``;
+
+            const telegramUrl = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+
+            fetch(telegramUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    chat_id: TELEGRAM_CHAT_ID,
+                    text: message,
+                    parse_mode: 'Markdown'
+                })
+            })
+            .then(response => {
+                if (response.ok) {
+                    document.getElementById('registrationForm').style.display = 'none';
+                    document.getElementById('successMessage').style.display = 'block';
+                } else {
+                    alert('ስህተት ተፈጥሯል! እባክዎ ቦቱ በግሩፑ ውስጥ አድሚን (Admin) መሆኑን ያረጋግጡ።');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('የኔትወርክ ስህተት ተፈጥሯል።');
+            });
+        }
+
+        // ዌብሳይቱ መጀመሪያ ሲከፈት ዶሮፕዳውኖችን ለመሙላት
+        window.onload = function() {
+            populateDropdowns('am');
+        };
+    </script>
+</body>
+</html>
